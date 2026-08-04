@@ -1,49 +1,88 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Image from "next/image"; // استيراد Image من Next.js
 import { motion } from "motion/react";
 import AnimatedLines from "./AnimatedLines";
 
-const FloatingKnot = dynamic(() => import("./canvas/FloatingKnot"), { ssr: false });
+const HeroPlanet = dynamic(() => import("./canvas/HeroPlanet"), { ssr: false });
 const StarField = dynamic(() => import("./canvas/StarField"), { ssr: false });
 
 export default function Hero() {
+  // دالة السكرول الناعم لزرار Scroll
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <section id="top" className="relative min-h-[100svh] overflow-hidden flex flex-col justify-end">
       <div className="absolute inset-0 -z-20">
         <StarField />
       </div>
       <div className="absolute inset-0 -z-10 opacity-90 [mask-image:radial-gradient(circle_at_65%_45%,black,transparent_70%)]">
-        <FloatingKnot />
+        <HeroPlanet />
       </div>
 
-      <div className="container-edge pt-40 pb-16 md:pb-24">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="mono-label text-accent mb-6"
-        >
-          /// Full-Stack Engineer &mdash; Product-minded
-        </motion.p>
+      <div className="container-edge pt-40 pb-16 md:pb-24 relative z-10">
+        <div className="flex flex-col-reverse lg:flex-row justify-between lg:items-center gap-12 lg:gap-8">
+          
+          {/* الجزء الأيسر: النصوص الأصلية */}
+          <div className="flex-1 w-full">
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="mono-label text-accent mb-6"
+            >
+              {/* هنا حطينا اسمك والمسمى الوظيفي المزدوج بوضوح */}
+              /// AbdUlrahman Elsayed &mdash; Power Eng & Full-Stack Dev
+            </motion.p>
 
-        <h1 className="font-display font-medium leading-[0.92] text-[13vw] md:text-[7.2vw] tracking-tight max-w-5xl">
-          <AnimatedLines
-            lines={["Building systems", "people actually", "rely on."]}
-            delay={0.55}
-          />
-        </h1>
+            <h1 className="font-display font-medium leading-[0.92] text-[13vw] md:text-[7vw] lg:text-[5.5vw] tracking-tight max-w-3xl">
+              {/* عنوان قوي بيجمع بين هندسة الطاقة وبناء أنظمة الويب */}
+              <AnimatedLines
+                lines={["Engineering Power,", "Architecting", "Web Systems."]}
+                delay={0.55}
+              />
+            </h1>
+          </div>
 
-        <div className="mt-10 flex flex-col md:flex-row md:items-end justify-between gap-8 border-t border-line pt-8">
+          {/* الجزء الأيمن: الصورة الشخصية */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-56 h-72 md:w-72 md:h-96 lg:w-[340px] lg:h-[440px] flex-shrink-0 group mx-auto lg:mx-0"
+          >
+            {/* الإطار الخلفي: بيلف للناحية التانية ويكبر شوية لما تعمل Hover */}
+            <div className="absolute inset-0 border border-line rounded-2xl -rotate-6 scale-105 bg-surface-2/30 backdrop-blur-sm -z-10 transition-all duration-500 ease-out group-hover:rotate-3 group-hover:scale-110 group-hover:border-accent/40" />
+            
+            {/* الصورة: ملونة دايماً، ولما تلمسها بتترفع لفوق، بتكبر سنة، وتنور، وتاخد Glow */}
+            <Image
+              src="/profile.png"
+              alt="AbdUlrahman Elsayed"
+              fill
+              className="object-cover rounded-2xl transition-all duration-500 ease-out border border-line group-hover:-translate-y-3 group-hover:scale-[1.03] group-hover:border-accent/50 group-hover:shadow-[0_20px_40px_-15px_rgba(255,122,51,0.25)] group-hover:brightness-110"
+              sizes="(max-width: 768px) 224px, (max-width: 1024px) 288px, 340px"
+              priority
+            />
+          </motion.div>
+        </div>
+
+        {/* الجزء السفلي: الوصف وزرار السكرول */}
+        <div className="mt-16 lg:mt-20 flex flex-col md:flex-row md:items-end justify-between gap-8 border-t border-line pt-8">
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.3, duration: 0.7 }}
             className="text-muted max-w-md text-base md:text-lg"
           >
-            I design and ship end-to-end web products &mdash; from database
-            schema to the pixel that ships. Currently building multi-tenant
-            SaaS platforms.
+            {/* وصف بيبين إنك بتستخدم العقلية الهندسية في بناء أي نظام ويب من الصفر */}
+            I apply the analytical rigor of an Electrical Power Engineer to design and ship versatile, end-to-end full-stack web applications &mdash; from database architecture to the final pixel.
           </motion.p>
 
           <motion.div
@@ -54,7 +93,15 @@ export default function Hero() {
           >
             <span className="text-fg">Based in Egypt</span>
             <span className="w-8 line-hair" />
-            <span>Scroll</span>
+            {/* تم تحويل Scroll إلى زرار تفاعلي */}
+            <a 
+              href="#about" 
+              onClick={(e) => handleSmoothScroll(e, "#about")}
+              data-cursor-hover
+              className="hover:text-accent transition-colors"
+            >
+              Scroll
+            </a>
           </motion.div>
         </div>
       </div>

@@ -2,10 +2,15 @@ import Reveal from "./Reveal";
 import AnimatedLines from "./AnimatedLines";
 import CopyEmailButton from "./CopyEmailButton";
 
+// قمنا بوضع الروابط الحقيقية الخاصة بك هنا
 const SOCIALS = [
-  { label: "GitHub", href: "#" },
-  { label: "LinkedIn", href: "#" },
-  { label: "Twitter / X", href: "#" },
+  { label: "GitHub", href: "https://github.com/abdelrhman445" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/abdelrahmanelsayed445" },
+  { label: "YouTube", href: "https://www.youtube.com/@abdulrahman_albat" },
+  { label: "TikTok", href: "https://www.tiktok.com/@abdulrhmanelbaty" },
+  { label: "Instagram", href: "https://www.instagram.com/albati445/" },
+  { label: "Facebook", href: "https://www.facebook.com/share/18NpWwA9Hv/" },
+  { label: "Twitter", href: "https://x.com/GamoTek" },
 ];
 
 export default function Contact() {
@@ -25,11 +30,13 @@ export default function Contact() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <ul className="flex items-center gap-6 mono-label text-muted">
+          <ul className="flex items-center gap-6 mono-label text-muted flex-wrap">
             {SOCIALS.map((s) => (
               <li key={s.label}>
                 <a
                   href={s.href}
+                  target="_blank" // فتح الرابط في نافذة جديدة
+                  rel="noopener noreferrer" // حماية إضافية للأمان
                   data-cursor-hover
                   className="hover:text-accent transition-colors"
                 >

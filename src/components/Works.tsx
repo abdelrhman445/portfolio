@@ -15,10 +15,10 @@ export default function Works() {
             <AnimatedLines trigger lines={["A few things I've", "built recently."]} />
           </h2>
         </div>
+        
         <Reveal>
-          <p className="text-muted max-w-xs mono-label leading-relaxed">
-            Replace this list with your own case studies &mdash; add links,
-            screenshots, and outcomes for each.
+          <p className="text-muted max-w-sm mono-label leading-relaxed">
+            A showcase of my recent full-stack applications, scalable e-commerce platforms, and advanced web systems.
           </p>
         </Reveal>
       </div>

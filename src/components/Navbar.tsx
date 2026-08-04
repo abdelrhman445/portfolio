@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 
+// تم تغيير "Work" إلى "Projects"
 const LINKS = [
-  { href: "#work", label: "Work" },
   { href: "#about", label: "About" },
   { href: "#skills", label: "Skills" },
+  { href: "#work", label: "Projects" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -20,6 +21,18 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // دالة السكرول الناعم بالتعاون مع Lenis
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault(); 
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
     <motion.header
       initial={{ y: -80, opacity: 0 }}
@@ -30,27 +43,59 @@ export default function Navbar() {
       }`}
     >
       <nav className="container-edge flex items-center justify-between h-20">
-        <a href="#top" data-cursor-hover className="font-display text-lg tracking-tight">
-          N<span className="text-accent">.</span>DEV
+        <a 
+          href="#top" 
+          onClick={(e) => handleSmoothScroll(e, "#top")}
+          data-cursor-hover 
+          className="font-display text-lg tracking-tight uppercase"
+        >
+          A<span className="text-accent">.</span>ELSAYED
         </a>
+        
         <ul className="hidden md:flex items-center gap-9 mono-label text-muted">
           {LINKS.map((l) => (
             <li key={l.href}>
-              <a href={l.href} data-cursor-hover className="hover:text-fg transition-colors">
+              <a 
+                href={l.href} 
+                onClick={(e) => handleSmoothScroll(e, l.href)}
+                data-cursor-hover 
+                className="hover:text-fg transition-colors"
+              >
                 {l.label}
               </a>
             </li>
           ))}
         </ul>
-        <a
-          href="#contact"
-          data-cursor-hover
-          className="mono-label hidden md:inline-flex items-center gap-2 border border-line rounded-full px-4 py-2 hover:border-accent hover:text-accent transition-colors"
-        >
-          Available for work
-          <span className="w-1.5 h-1.5 rounded-full bg-accent-2 animate-pulse" />
-        </a>
+
+        {/* تجميع الأزرار في حاوية واحدة لترتيبهم بجانب بعض */}
+        <div className="hidden md:flex items-center gap-4">
+          
+          {/* زرار تحميل السيرة الذاتية (CV) */}
+          <a
+            href="/cv.pdf" // مسار ملف الـ CV
+            download="AbdUlrahman_Elsayed_CV.pdf" // الاسم اللي هينزل بيه الملف
+            data-cursor-hover
+            className="mono-label flex items-center gap-2 border border-line rounded-full px-4 py-2 hover:border-accent hover:text-accent transition-colors"
+          >
+            Download CV
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+          </a>
+
+          {/* زرار Available for work الأصلي */}
+          <a
+            href="#contact"
+            onClick={(e) => handleSmoothScroll(e, "#contact")}
+            data-cursor-hover
+            className="mono-label flex items-center gap-2 border border-line rounded-full px-4 py-2 hover:border-accent hover:text-accent transition-colors"
+          >
+            Available for work
+            <span className="w-1.5 h-1.5 rounded-full bg-accent-2 animate-pulse" />
+          </a>
+          
+        </div>
       </nav>
     </motion.header>
   );
-}
+} 

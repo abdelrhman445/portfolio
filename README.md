@@ -1,44 +1,49 @@
-# N.DEV Portfolio
+# A.ELSAYED Portfolio
 
-بورتفوليو مبني بـ Next.js 15 (App Router) + TypeScript + Tailwind CSS v4،
-بيجمع كل أنماط الأنيميشن اللي اتحللت من الـ 6 مشاريع اللي بعتها:
+A portfolio built with Next.js 15 (App Router) + TypeScript + Tailwind CSS v4,
+combining animation patterns distilled from the projects sent for reference:
 
-- **Three.js + React Three Fiber + drei** — كائن 3D سلكي عائم (torus knot) في
-  الـ Hero + خلفية نجوم متحركة (`src/components/canvas`).
-- **GSAP + ScrollTrigger + @gsap/react** — تحريك النصوص سطر سطر
-  (`AnimatedLines.tsx`) وscroll reveal للسكاشن (`Reveal.tsx`).
-- **Lenis** — سكرول سلس متزامن مع GSAP (`SmoothScroll.tsx`).
-- **Custom cursor** (reticle) بـ GSAP quickTo (`CustomCursor.tsx`).
-- **Framer Motion (motion/react)** — micro-interactions (الناف بار، كروت
-  المشاريع، الأزرار).
-- **Marquee** لشريط المهارات (`SkillsMarquee.tsx`).
+- **Three.js + React Three Fiber + drei** — a floating 3D planet model in the
+  Hero (`Float` + cinematic `Environment`/`Lightformer` lighting) plus an
+  animated starfield background (`src/components/canvas`).
+- **GSAP + ScrollTrigger + @gsap/react** — line-by-line text reveals
+  (`AnimatedLines.tsx`), scroll-triggered section reveals (`Reveal.tsx`), and
+  the planet's own entrance timeline.
+- **Lenis** — smooth scroll synced with GSAP (`SmoothScroll.tsx`).
+- **Custom cursor** (reticle) powered by GSAP `quickTo` (`CustomCursor.tsx`).
+- **Framer Motion (motion/react)** — micro-interactions (navbar, project
+  cards, buttons).
+- **Marquee** for the skills strip (`SkillsMarquee.tsx`).
 
-## تشغيل المشروع محليًا
+## Running locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-افتح `http://localhost:3000`.
+Open `http://localhost:3000`.
 
-## حاجات لازم تغيرها قبل النشر
+## Things to check before deploying
 
-1. **الاسم والبيانات الشخصية**: `src/components/Navbar.tsx`،
-   `src/components/Hero.tsx`، `src/components/Footer.tsx`.
-2. **الإيميل الحقيقي**: `src/components/CopyEmailButton.tsx` (المتغير `EMAIL`).
-3. **لينكات السوشيال ميديا**: `src/components/Contact.tsx` (مصفوفة `SOCIALS`).
-4. **المشاريع**: `src/data/projects.ts` — استبدل الـ placeholder بمشاريعك
-   الحقيقية (تقدر تضيف صور/سكرين شوتس لو عايز تطور `WorkCard.tsx` بعدين).
+1. **Name & personal details**: `src/components/Navbar.tsx`,
+   `src/components/Hero.tsx`, `src/components/Footer.tsx`.
+2. **Projects**: `src/data/projects.ts` — one real project (Awwwards-Style
+   Portfolio) is already in there; replace the remaining placeholders with
+   your other real projects (you can extend `WorkCard.tsx` later if you want
+   to add screenshots).
+3. **Favicon**: `src/app/icon.png` and `src/app/apple-icon.png` are already
+   branded (referenced from `metadata.icons` in `layout.tsx`) — swap them out
+   if you want a different mark.
 
-## الخطوط (Fonts)
+## Fonts
 
-الكود جاهز يشتغل بـ `next/font/google` لخطوط **Space Grotesk** (display)،
-**Inter** (body)، و**JetBrains Mono** (mono) — لكنها كانت متعطلة هنا لأن بيئة
-البناء ماكنش عندها اتصال بالإنترنت لـ Google Fonts، فحطيت بدلها font-stack
-محلي مؤقت في `src/app/globals.css`. لما تشغل المشروع على جهازك أو تنشره على
-Vercel (فين الإنترنت متاح وقت البيلد)، رجّع الكود ده في
-`src/app/layout.tsx`:
+The code is ready to use `next/font/google` for **Space Grotesk** (display),
+**Inter** (body), and **JetBrains Mono** (mono) — but they were disabled here
+because the build environment had no internet access to Google Fonts, so a
+temporary local font stack was used instead in `src/app/globals.css`. When you
+run the project on your machine or deploy it to Vercel (where internet is
+available at build time), restore this in `src/app/layout.tsx`:
 
 ```tsx
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
@@ -55,8 +60,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 ```
 
-وضيف `${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`
-لـ `className` بتاعة `<html>`، وفي `globals.css` رجّع:
+Then add `${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`
+to the `<html>` element's `className`, and in `globals.css` restore:
 
 ```css
 --font-display: var(--font-space-grotesk);
@@ -64,15 +69,20 @@ const jetbrainsMono = JetBrains_Mono({
 --font-mono: var(--font-jetbrains-mono);
 ```
 
-## تخصيص الألوان
+## Customizing colors
 
-كل الألوان معرفة كـ CSS variables في `src/app/globals.css` (`--bg`,
-`--accent`, `--accent-2`, إلخ) — غيّرها من مكان واحد وهتتطبق على المشروع كله.
+All colors are defined as CSS variables in `src/app/globals.css` (`--bg`,
+`--accent`, `--accent-2`, etc.) — change them in one place and it applies
+across the whole project.
 
-## أداء وملاحظات
+## Performance & notes
 
-- الكانفس بتوع Three.js متحملة بـ `dynamic(..., { ssr: false })` عشان
-  WebGL محتاج المتصفح.
-- فيه `prefers-reduced-motion` مفعّل في الـ CSS لأي مستخدم بيفضل تقليل
-  الحركة.
-- الكيرسر المخصص بيتقفل تلقائيًا على الموبايل / أجهزة اللمس.
+- The Three.js canvases are loaded with `dynamic(..., { ssr: false })` since
+  WebGL needs the browser.
+- `prefers-reduced-motion` is respected in the CSS for anyone who prefers less
+  motion.
+- The custom cursor auto-disables itself on mobile / touch devices.
+- The hero planet model (`public/models/Planet.glb`) is ~18MB — noticeably
+  heavier than a plain geometric shape, so first load of the hero takes a bit
+  longer, especially on slow connections. Let me know if you want it
+  Draco-compressed to cut the size down significantly with no visible loss.

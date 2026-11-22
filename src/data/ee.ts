@@ -11,6 +11,7 @@ export type EEProject = {
   tag: string;
   description: string;
   tools: string[];
+  href?: string;
   images?: { src: string; alt: string; caption: string }[];
 };
 
@@ -25,6 +26,7 @@ const img = (n: number, k: string, alt: string, caption: string) => ({
 export const eeProjects: EEProject[] = [
   {
     index: "01",
+    href: "https://drive.google.com/drive/folders/1-4Eq1u3bCn0HIaDGl6SlFWSRyZjBIboM",
     title: "Power Rectifier Simulations",
     tag: "Power Electronics Lab, Zagazig University",
     description:
@@ -33,6 +35,7 @@ export const eeProjects: EEProject[] = [
   },
   {
     index: "02",
+    href: "https://drive.google.com/drive/folders/1coLL_eFdym34bmdgj1cWLAvaxxse3tCW",
     title: "Single-Phase Half-Wave Rectifier",
     tag: "Simulation \u2014 Experiment 2",
     description:
@@ -46,6 +49,7 @@ export const eeProjects: EEProject[] = [
   },
   {
     index: "03",
+    href: "https://drive.google.com/drive/folders/1CUX8xvCnZRQi_2rMZKlO0kKRwoEDwywn",
     title: "Single-Phase Full-Wave Bridge Rectifier",
     tag: "Simulation \u2014 Experiment 3",
     description:
@@ -59,6 +63,7 @@ export const eeProjects: EEProject[] = [
   },
   {
     index: "04",
+    href: "https://drive.google.com/drive/folders/1Xkbcm6ilWoX-V8FHmzTz2qKG8uDtQoDf",
     title: "Full-Wave Rectifier with Center-Tapped Transformer",
     tag: "Simulation \u2014 Experiment 4",
     description:
@@ -72,6 +77,7 @@ export const eeProjects: EEProject[] = [
   },
   {
     index: "05",
+    href: "https://drive.google.com/drive/folders/1o5YB5g_LFrDiYPDuotJA9j8HGOd9C81u",
     title: "Three-Phase Half-Wave Rectifier",
     tag: "Simulation \u2014 Experiment 5",
     description:
@@ -85,6 +91,7 @@ export const eeProjects: EEProject[] = [
   },
   {
     index: "06",
+    href: "https://drive.google.com/drive/folders/1GKOcGC0fjRtygpyUrvkDH8kytYyJ77Ul",
     title: "Three-Phase Full-Wave Rectifier",
     tag: "Simulation \u2014 Experiment 6",
     description:
@@ -110,6 +117,7 @@ export const eeProjects: EEProject[] = [
   },
   {
     index: "08",
+    href: "https://drive.google.com/drive/folders/1T_v_QFEhDk4HPsNnAYIG2jlqZd3qOblr",
     title: "Power Diode, Transistor and SCR Testing",
     tag: "Hands-on Lab \u2014 Experiment 1",
     description:

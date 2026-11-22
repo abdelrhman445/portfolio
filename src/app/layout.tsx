@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "AbdUlrahman Elsayed — Power Eng & Full-Stack Dev",
   description:
     "Portfolio of AbdUlrahman Elsayed, an Electrical Power Engineer and Full-Stack Web Developer building robust, end-to-end web systems and e-commerce platforms.",
+  alternates: {
+    canonical: "https://portfolio.nullspecteracademy.ninja",
+  },
   openGraph: {
     title: "AbdUlrahman Elsayed — Power Eng & Full-Stack Dev",
     description:
@@ -37,6 +40,24 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Abdulrahman Elsayed",
+              url: "https://portfolio.nullspecteracademy.ninja",
+              jobTitle: "Power Engineer & Full-Stack Web Developer",
+              description:
+                "Electrical Power Engineer and Full-Stack Web Developer building robust, end-to-end web systems and e-commerce platforms.",
+              sameAs: [
+                "https://github.com/abdelrhman445",
+                "https://www.linkedin.com/in/abdelrahmanelsayed445",
+              ],
+            }),
+          }}
+        />
         <ScrollProgress />
         <CustomCursor />
         <SmoothScroll>{children}</SmoothScroll>

@@ -56,7 +56,7 @@ export default function Contact() {
         {/* النصف الأيسر */}
         <div>
           <Reveal>
-            <p className="mono-label text-accent mb-6">Contact &mdash; 05</p>
+            <p className="mono-label text-accent mb-6">Contact &mdash; 06</p>
           </Reveal>
 
           <h2 className="font-display leading-[0.95] tracking-tight text-[11vw] md:text-[6vw]">

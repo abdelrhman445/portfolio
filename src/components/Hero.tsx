@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { profileImg } from "@/data/profile-img";
 import { motion } from "motion/react";
@@ -8,7 +9,25 @@ import AnimatedLines from "./AnimatedLines";
 const HeroPlanet = dynamic(() => import("./canvas/HeroPlanet"), { ssr: false });
 const StarField = dynamic(() => import("./canvas/StarField"), { ssr: false });
 
+// WebGL 3D only on devices that can afford it: desktop-width viewports with
+// enough CPU cores, not saving data, and no reduced-motion preference.
+// Mobile/weak devices get a static styled fallback instead of the heavy scene.
+function useCanRender3D() {
+  const [can, setCan] = useState(false);
+  useEffect(() => {
+    const wide = window.matchMedia("(min-width: 1024px)").matches;
+    const cores = (navigator.hardwareConcurrency || 2) >= 6;
+    const conn = (navigator as unknown as { connection?: { saveData?: boolean } }).connection;
+    const saveData = conn?.saveData === true;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setCan(wide && cores && !saveData && !reduced);
+  }, []);
+  return can;
+}
+
 export default function Hero() {
+  const canRender3D = useCanRender3D();
+
   // دالة السكرول الناعم لزرار Scroll
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -20,12 +39,21 @@ export default function Hero() {
 
   return (
     <section id="top" className="relative min-h-[100svh] overflow-hidden flex flex-col justify-end">
-      <div className="absolute inset-0 -z-20">
-        <StarField />
-      </div>
-      <div className="absolute inset-0 -z-10 opacity-90 [mask-image:radial-gradient(circle_at_65%_45%,black,transparent_70%)]">
-        <HeroPlanet />
-      </div>
+      {canRender3D ? (
+        <>
+          <div className="absolute inset-0 -z-20">
+            <StarField />
+          </div>
+          <div className="absolute inset-0 -z-10 opacity-90 [mask-image:radial-gradient(circle_at_65%_45%,black,transparent_70%)]">
+            <HeroPlanet />
+          </div>
+        </>
+      ) : (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 opacity-70 [background:radial-gradient(circle_at_65%_45%,rgba(255,122,51,0.22),transparent_55%),radial-gradient(circle_at_80%_20%,rgba(120,140,255,0.12),transparent_50%)]"
+        />
+      )}
 
       <div className="container-edge pt-40 pb-16 md:pb-24 relative z-10">
         <div className="flex flex-col-reverse lg:flex-row justify-between lg:items-center gap-12 lg:gap-8">

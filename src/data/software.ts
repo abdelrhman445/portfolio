@@ -1,4 +1,5 @@
-import { swGreen, swPhasorCanvas, swPhasorLogin, swPhasorSplash } from "./sw-img";
+import { swGreen } from "./sw-img";
+import { swPhasorCanvas, swPhasorLogin, swPhasorSplash } from "./sw-phasor-img";
 
 export type SoftwareProject = {
   index: string;

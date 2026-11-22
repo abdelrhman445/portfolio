@@ -22,8 +22,9 @@ export default function SoftwareProjects() {
       </div>
 
       <div className="border-t border-line">
-        {softwareProjects.map((p) => (
-          <article key={p.index} className="border-b border-line py-10 md:py-12 pl-2 md:pl-6">
+        {softwareProjects.map((p, i) => (
+          <Reveal key={p.index} y={26} delay={i * 0.06} start="top 92%">
+          <article className="border-b border-line py-10 md:py-12 pl-2 md:pl-6">
             <div className="grid md:grid-cols-12 gap-4 md:gap-6 items-start">
               <span className="md:col-span-1 mono-label text-muted">{p.index}</span>
               <div className="md:col-span-11">
@@ -80,6 +81,7 @@ export default function SoftwareProjects() {
               </div>
             </div>
           </article>
+          </Reveal>
         ))}
       </div>
     </section>

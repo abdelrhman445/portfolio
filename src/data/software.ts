@@ -1,4 +1,4 @@
-import { swGreen } from "./sw-img";
+import { swGreen, swPhasorCanvas, swPhasorLogin, swPhasorSplash } from "./sw-img";
 
 export type SoftwareProject = {
   index: string;
@@ -8,6 +8,7 @@ export type SoftwareProject = {
   tools: string[];
   href: string;
   image?: { src: string; alt: string; caption: string };
+  images?: { src: string; alt: string; caption: string }[];
 };
 
 export const softwareProjects: SoftwareProject[] = [
@@ -19,6 +20,11 @@ export const softwareProjects: SoftwareProject[] = [
       "A web platform for designing and simulating classic control circuits. You build relay-logic panels on a canvas from electrical components like contactors, relays, timers, motors, push buttons and pilot lamps, save circuits to your account, and run them through the simulation API. Full-stack app with JWT authentication and per-user circuit storage.",
     tools: ["React", "TypeScript", "Node.js", "Express", "MongoDB"],
     href: "https://phasor-x.vercel.app/",
+    images: [
+      { src: swPhasorCanvas, alt: "PhasorX workspace canvas with a motor control circuit", caption: "Live app — design canvas" },
+      { src: swPhasorLogin, alt: "PhasorX login screen", caption: "Login — animated AC waveform" },
+      { src: swPhasorSplash, alt: "PhasorX splash screen", caption: "Splash screen" },
+    ],
   },
   {
     index: "02",

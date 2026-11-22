@@ -183,3 +183,5 @@ npm run start
 **Built with care — where engineering precision meets front-end craft.**
 
 </div>
+
+<!-- deploy-check: 2026-11-22 -->

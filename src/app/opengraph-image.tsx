@@ -4,7 +4,7 @@ export const runtime = "nodejs";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt =
-  "AbdUlrahman Elsayed — Power Engineer & Full-Stack Web Developer";
+  "Abdulrahman Elsayed — Power Engineer & Full-Stack Web Developer";
 
 export default function Image() {
   return new ImageResponse(
@@ -45,7 +45,7 @@ export default function Image() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div style={{ fontSize: 88, fontWeight: 700, lineHeight: 1.02 }}>
-            AbdUlrahman Elsayed
+            Abdulrahman Elsayed
           </div>
           <div style={{ fontSize: 40, color: "#ff7a51", fontWeight: 600 }}>
             Power Engineer &amp; Full-Stack Web Developer

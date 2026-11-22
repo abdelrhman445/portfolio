@@ -66,7 +66,7 @@ export default function Hero() {
               className="mono-label text-accent mb-6"
             >
               {/* هنا حطينا اسمك والمسمى الوظيفي المزدوج بوضوح */}
-              /// AbdUlrahman Elsayed &mdash; Power Eng & Full-Stack Dev
+              /// AbdUlrahman Elsayed &mdash; Power Eng & Full‑Stack Dev
             </motion.p>
 
             <h1 className="font-display font-medium leading-[0.92] text-[13vw] md:text-[7vw] lg:text-[5.5vw] tracking-tight max-w-3xl">

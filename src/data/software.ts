@@ -1,4 +1,4 @@
-import { swGreen, swPhasor } from "./sw-img";
+import { swGreen } from "./sw-img";
 
 export type SoftwareProject = {
   index: string;
@@ -19,7 +19,6 @@ export const softwareProjects: SoftwareProject[] = [
       "A web platform for designing and simulating classic control circuits. You build relay-logic panels on a canvas from electrical components like contactors, relays, timers, motors, push buttons and pilot lamps, save circuits to your account, and run them through the simulation API. Full-stack app with JWT authentication and per-user circuit storage.",
     tools: ["React", "TypeScript", "Node.js", "Express", "MongoDB"],
     href: "https://phasor-x.vercel.app/",
-    image: { src: swPhasor, alt: "PhasorX sign-in screen", caption: "Live app" },
   },
   {
     index: "02",

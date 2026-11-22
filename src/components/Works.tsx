@@ -24,8 +24,10 @@ export default function Works() {
       </div>
 
       <div className="border-t border-line">
-        {projects.map((p) => (
-          <WorkCard key={p.index} project={p} />
+        {projects.map((p, i) => (
+          <Reveal key={p.index} y={30} delay={i * 0.06} start="top 92%">
+            <WorkCard project={p} />
+          </Reveal>
         ))}
       </div>
     </section>

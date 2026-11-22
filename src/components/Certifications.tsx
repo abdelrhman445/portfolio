@@ -47,9 +47,9 @@ export default function Certifications() {
       </div>
 
       <div className="border-t border-line">
-        {CERTS.map((c) => (
+        {CERTS.map((c, i) => (
+          <Reveal key={c.index} y={22} delay={i * 0.07} start="top 94%">
           <article
-            key={c.index}
             className="border-b border-line py-8 md:py-10 pl-2 md:pl-6 grid md:grid-cols-12 gap-3 md:gap-6 items-start"
           >
             <span className="md:col-span-1 mono-label text-muted">{c.index}</span>
@@ -59,6 +59,7 @@ export default function Certifications() {
             <p className="md:col-span-2 mono-label text-muted">{c.issuer}</p>
             <p className="md:col-span-2 mono-label text-accent md:text-right">{c.date}</p>
           </article>
+          </Reveal>
         ))}
       </div>
     </section>

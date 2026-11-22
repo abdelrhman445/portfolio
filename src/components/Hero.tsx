@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Image from "next/image"; // استيراد Image من Next.js
+import { profileImg } from "@/data/profile-img";
 import { motion } from "motion/react";
 import AnimatedLines from "./AnimatedLines";
 
@@ -62,13 +62,12 @@ export default function Hero() {
             <div className="absolute inset-0 border border-line rounded-2xl -rotate-6 scale-105 bg-surface-2/30 backdrop-blur-sm -z-10 transition-all duration-500 ease-out group-hover:rotate-3 group-hover:scale-110 group-hover:border-accent/40" />
             
             {/* الصورة: ملونة دايماً، ولما تلمسها بتترفع لفوق، بتكبر سنة، وتنور، وتاخد Glow */}
-            <Image
-              src="/profile.png"
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={profileImg}
               alt="AbdUlrahman Elsayed"
-              fill
-              className="object-cover rounded-2xl transition-all duration-500 ease-out border border-line group-hover:-translate-y-3 group-hover:scale-[1.03] group-hover:border-accent/50 group-hover:shadow-[0_20px_40px_-15px_rgba(255,122,51,0.25)] group-hover:brightness-110"
-              sizes="(max-width: 768px) 224px, (max-width: 1024px) 288px, 340px"
-              priority
+              loading="eager"
+              className="absolute inset-0 w-full h-full object-cover rounded-2xl transition-all duration-500 ease-out border border-line group-hover:-translate-y-3 group-hover:scale-[1.03] group-hover:border-accent/50 group-hover:shadow-[0_20px_40px_-15px_rgba(255,122,51,0.25)] group-hover:brightness-110"
             />
           </motion.div>
         </div>

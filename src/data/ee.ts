@@ -3,6 +3,7 @@ import { ex3 } from "./ee-img-3";
 import { ex4 } from "./ee-img-4";
 import { ex5 } from "./ee-img-5";
 import { ex6 } from "./ee-img-6";
+import { dol } from "./ee-img-dol";
 
 export type EEProject = {
   index: string;
@@ -97,6 +98,18 @@ export const eeProjects: EEProject[] = [
   },
   {
     index: "07",
+    title: "Direct-On-Line Motor Starter",
+    tag: "Classic Control \u2014 Design and Simulation",
+    description:
+      "A design and simulation of the classic Direct-On-Line starter for a three-phase motor. The power circuit feeds the motor through the main contacts of contactor K1. The control circuit uses a normally closed Stop button, a normally open Start button and an auxiliary K1 contact wired in parallel with Start. That auxiliary contact latches the coil once Start is pressed, so the motor keeps running until Stop opens the circuit. The two views show the circuit with the contactor energised and at rest.",
+    tools: ["Control Circuits", "Contactors", "Simulation"],
+    images: [
+      { src: dol.running, alt: "DOL starter simulation with the contactor energised and the motor running", caption: "Contactor energised" },
+      { src: dol.idle, alt: "DOL starter simulation at rest", caption: "At rest" },
+    ],
+  },
+  {
+    index: "08",
     title: "Power Diode, Transistor and SCR Testing",
     tag: "Hands-on Lab \u2014 Experiment 1",
     description:

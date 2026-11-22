@@ -3,7 +3,7 @@ import AnimatedLines from "./AnimatedLines";
 
 // إحصائيات بتعكس مجالك المزدوج (الكهرباء والبرمجة)
 const STATS = [
-  { value: "6", label: "Professions: Power Eng & Full Stack" },
+  { value: "2", label: "Fields: Power Eng & Full Stack" },
   { value: "12", label: "Engineering & Web Projects" },
   { value: "20", label: "Tech Stack & Tools" },
 ];

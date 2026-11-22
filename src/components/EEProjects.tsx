@@ -25,9 +25,9 @@ export default function EEProjects() {
       </div>
 
       <div className="border-t border-line">
-        {eeProjects.map((p) => (
+        {eeProjects.map((p, i) => (
+          <Reveal key={p.index} y={30} delay={i * 0.06} start="top 92%">
           <motion.article
-            key={p.index}
             initial="rest"
             whileHover="hover"
             animate="rest"
@@ -86,8 +86,9 @@ export default function EEProjects() {
               </div>
             </div>
           </motion.article>
+          </Reveal>
         ))}
       </div>
     </section>
   );
-}
+            }

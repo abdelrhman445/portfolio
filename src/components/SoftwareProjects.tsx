@@ -44,7 +44,7 @@ export default function SoftwareProjects() {
                   data-cursor-hover
                   className="mono-label inline-block mt-6 text-accent hover:text-fg transition-colors"
                 >
-                  View on GitHub &nearr;
+                  View on GitHub ↗
                 </a>
               </div>
             </div>

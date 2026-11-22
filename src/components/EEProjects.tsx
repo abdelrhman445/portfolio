@@ -43,7 +43,7 @@ export default function EEProjects() {
                       <figure key={im.src}>
                         <div className="relative aspect-video rounded-xl overflow-hidden border border-line bg-surface">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={im.src} alt={im.alt} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
+                          <img src={im.src} alt={im.alt} loading="lazy" className="absolute inset-0 w-full h-full object-contain bg-white" />
                         </div>
                         <figcaption className="mono-label text-muted mt-2">{im.caption}</figcaption>
                       </figure>

@@ -16,11 +16,10 @@ function useCanRender3D() {
   const [can, setCan] = useState(false);
   useEffect(() => {
     const wide = window.matchMedia("(min-width: 1024px)").matches;
-    const cores = (navigator.hardwareConcurrency || 2) >= 6;
     const conn = (navigator as unknown as { connection?: { saveData?: boolean } }).connection;
     const saveData = conn?.saveData === true;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setCan(wide && cores && !saveData && !reduced);
+    setCan(wide && !saveData && !reduced);
   }, []);
   return can;
 }

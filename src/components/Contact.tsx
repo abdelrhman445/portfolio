@@ -26,8 +26,7 @@ export default function Contact() {
     const formData = new FormData(form);
 
     try {
-      // تم إضافة الرابط الخاص بك هنا بنجاح
-      const response = await fetch("https://formspree.io/f/mrpzzvqr", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: formData,
         headers: {
@@ -94,6 +93,17 @@ export default function Contact() {
             className="flex flex-col gap-10 w-full max-w-xl mx-auto lg:mx-0 lg:ml-auto mt-4 lg:mt-0"
             onSubmit={handleSubmit}
           >
+            <input type="hidden" name="access_key" value="2454d4b4-a26f-4fc4-9c6c-e89746d9372a" />
+            {/* Honeypot: بيصطاد البوتات بس، مخفي عن المستخدمين */}
+            <input
+              type="checkbox"
+              name="botcheck"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="hidden"
+              style={{ display: "none" }}
+            />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               <div className="flex flex-col gap-2 group">
                 <label htmlFor="name" className="mono-label text-muted group-focus-within:text-accent transition-colors">Name</label>
@@ -128,7 +138,6 @@ export default function Contact() {
                 type="text"
                 id="subject"
                 name="subject"
-                required
                 disabled={status === "loading"}
                 className="bg-transparent border-b border-line pb-3 text-fg focus:outline-none focus:border-accent transition-colors w-full disabled:opacity-50"
                 placeholder="subject of your message"

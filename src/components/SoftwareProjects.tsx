@@ -37,6 +37,15 @@ export default function SoftwareProjects() {
                     </span>
                   ))}
                 </div>
+                {p.image && (
+                  <figure className="max-w-2xl mt-8">
+                    <div className="relative aspect-video rounded-xl overflow-hidden border border-line bg-surface">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={p.image.src} alt={p.image.alt} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105" />
+                    </div>
+                    <figcaption className="mono-label text-muted mt-2">{p.image.caption}</figcaption>
+                  </figure>
+                )}
                 <a
                   href={p.href}
                   target="_blank"
@@ -44,7 +53,7 @@ export default function SoftwareProjects() {
                   data-cursor-hover
                   className="mono-label inline-block mt-6 text-accent hover:text-fg transition-colors"
                 >
-                  View on GitHub ↗
+                  {p.href.includes("github.com") ? "View on GitHub ↗" : "Visit live app ↗"}
                 </a>
               </div>
             </div>

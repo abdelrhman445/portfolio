@@ -46,6 +46,28 @@ export default function SoftwareProjects() {
                     <figcaption className="mono-label text-muted mt-2">{p.image.caption}</figcaption>
                   </figure>
                 )}
+                {p.images && (
+                  <div className="max-w-3xl mt-8 grid gap-4">
+                    <figure>
+                      <div className="relative aspect-video rounded-xl overflow-hidden border border-line bg-surface">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={p.images[0].src} alt={p.images[0].alt} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105" />
+                      </div>
+                      <figcaption className="mono-label text-muted mt-2">{p.images[0].caption}</figcaption>
+                    </figure>
+                    <div className="grid grid-cols-2 gap-4">
+                      {p.images.slice(1).map((im) => (
+                        <figure key={im.caption}>
+                          <div className="relative aspect-video rounded-xl overflow-hidden border border-line bg-surface">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src={im.src} alt={im.alt} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105" />
+                          </div>
+                          <figcaption className="mono-label text-muted mt-2">{im.caption}</figcaption>
+                        </figure>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 <a
                   href={p.href}
                   target="_blank"

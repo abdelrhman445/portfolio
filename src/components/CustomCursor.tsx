@@ -6,17 +6,20 @@ import { gsap } from "@/lib/gsap";
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // إيقاف الكود بالكامل لو الجهاز شاشة تاتش (موبايل/تابلت)
     if (window.matchMedia("(pointer: coarse)").matches) {
       if (dotRef.current) dotRef.current.style.display = "none";
       if (ringRef.current) ringRef.current.style.display = "none";
+      if (glowRef.current) glowRef.current.style.display = "none";
       return;
     }
 
     const dot = dotRef.current;
     const ring = ringRef.current;
+    const glow = glowRef.current;
     if (!dot || !ring) return;
 
     let ctx = gsap.context(() => {
@@ -24,12 +27,15 @@ export default function CustomCursor() {
       const dotY = gsap.quickTo(dot, "y", { duration: 0.12, ease: "power3.out" });
       const ringX = gsap.quickTo(ring, "x", { duration: 0.45, ease: "power3.out" });
       const ringY = gsap.quickTo(ring, "y", { duration: 0.45, ease: "power3.out" });
+      const glowX = glow ? gsap.quickTo(glow, "x", { duration: 0.9, ease: "power3.out" }) : null;
+      const glowY = glow ? gsap.quickTo(glow, "y", { duration: 0.9, ease: "power3.out" }) : null;
 
       const onMove = (e: MouseEvent) => {
         dotX(e.clientX);
         dotY(e.clientY);
         ringX(e.clientX);
         ringY(e.clientY);
+        if (glowX && glowY) { glowX(e.clientX); glowY(e.clientY); }
       };
 
       const interactiveSelector = "a, button, [data-cursor-hover]";
@@ -73,6 +79,7 @@ export default function CustomCursor() {
 
   return (
     <>
+      <div ref={glowRef} className="cursor-glow" aria-hidden="true" />
       <div ref={ringRef} className="cursor-ring" aria-hidden="true" />
       <div ref={dotRef} className="cursor-dot" aria-hidden="true" />
     </>

@@ -42,7 +42,12 @@ export default function WorkCard({ project }: { project: Project }) {
           {project.title}
         </motion.h3>
 
-        <p className="md:col-span-3 text-muted mono-label">{project.role}</p>
+        <div className="md:col-span-3">
+          <p className="text-muted mono-label">{project.role}</p>
+          <p className="mono-label text-accent mt-3 inline-flex items-center gap-1.5 underline-offset-4 group-hover:underline">
+            Visit live site <span aria-hidden="true">&#8599;</span>
+          </p>
+        </div>
 
         <div className="md:col-span-3 flex md:justify-end flex-wrap gap-2">
           {project.stack.map((s) => (
@@ -81,4 +86,4 @@ export default function WorkCard({ project }: { project: Project }) {
       </motion.div>
     </motion.a>
   );
-}
+        }
